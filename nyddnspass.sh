@@ -1,21 +1,5 @@
 #!/bin/bash
 
-# 删除 sources.list 文件中包含 'buster-backports' 的行
-sed -i '/deb http:\/\/cdn-aws.deb.debian.org\/debian buster-backports main/d' /etc/apt/sources.list
-sed -i '/deb-src http:\/\/cdn-aws.deb.debian.org\/debian buster-backports main/d' /etc/apt/sources.list
-echo "Backports entries removed from sources.list"
-
-# 修改 SSH 配置，允许 root 登录和密码认证
-sed -i 's/^.*PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config
-sed -i 's/^.*PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-
-# 设置 root 用户密码
-echo "root:yumou1JIU" | chpasswd
-
-# 重启 SSH 服务
-service ssh restart
-echo "SSH configuration updated and service restarted"
-
 # 使用 curl 下载脚本并保存到临时文件
 curl -fLSs https://api.nyafw.com/download/nyanpass-install.sh -o /tmp/nyanpass-install.sh
 curl -fLSs https://api.nyafw.com/download/nyanpass-install.sh -o /tmp/nyanpass-install-2.sh
