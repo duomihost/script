@@ -2,7 +2,6 @@
 
 # 使用 curl 下载脚本并保存到临时文件
 curl -fLSs https://api.nyafw.com/download/nyanpass-install.sh -o /tmp/nyanpass-install.sh
-curl -fLSs https://api.nyafw.com/download/nyanpass-install.sh -o /tmp/nyanpass-install-2.sh
 
 # 安装 expect（如果没有安装）
 apt update
