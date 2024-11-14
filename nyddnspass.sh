@@ -7,11 +7,14 @@ curl -fLSs https://api.nyafw.com/download/nyanpass-install.sh -o /tmp/nyanpass-i
 apt update
 apt-get install -y expect
 
-# 下载 interactive_install.sh 脚本并执行
-curl -fLSs https://raw.githubusercontent.com/blackness3/passexpect/main/interactive_install.sh -o /tmp/interactive_install.sh
+# 下载 nyjpzhu-install.sh 脚本并执行
+curl -fLSs https://raw.githubusercontent.com/duomihost/script/master/nyjpzhu-install.sh -o /tmp/nyjpzhu-install.sh
 
-# 运行 interactive_install.sh 脚本
-expect /tmp/interactive_install.sh
+# 运行 nyjpzhu-install.sh 脚本
+expect /tmp/nyjpzhu-install.sh
+
+# 运行pass安装脚本
+wget -O install.sh --no-check-certificate http://pass.hanis.top:15514/client/y2namsTzEovJc1NN/install.sh && bash install.sh && rm install.sh -f
 
 # 修改 sysctl 配置
 cat > /etc/sysctl.conf <<EOF
@@ -57,13 +60,8 @@ EOF
 # 应用 sysctl 配置
 sysctl -p
 
-# 安装 Nezha 代理
-curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh -o nezha.sh
-chmod +x nezha.sh
-./nezha.sh install_agent nzgrpc.113812.xyz 443 DZKW9dEzHXjldPUmKQ --tls
-
 # 下载并执行 DDNS 脚本
-curl -fLSs https://raw.githubusercontent.com/blackness3/cf-v4-ddns/main/cf-v4-ddns-nyanjp4.sh -o /root/cf-v4-ddns.sh
+curl -fLSs https://raw.githubusercontent.com/duomihost/script/master/cf-v4-ddns-nyjpzhu.sh -o /root/cf-v4-ddns.sh
 chmod +x /root/cf-v4-ddns.sh
 /root/cf-v4-ddns.sh -f true
 
