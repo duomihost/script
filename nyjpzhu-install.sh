@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 
 # 第一个交互式脚本
-spawn bash /tmp/nyjpzhu-install.sh rel_nodeclient "-o -t 0e285e35-e6f7-4f10-874b-00356f6533fd -u https://1nps.698986.xyz"
+spawn bash /tmp/nyanpass-install.sh rel_nodeclient "-o -t 0e285e35-e6f7-4f10-874b-00356f6533fd -u https://1nps.698986.xyz"
 
 # 第一次交互：输入服务名
 expect "请输入服务名" { send "nyanpass\r" }
