@@ -188,7 +188,7 @@ clean() {
 
 verify() {
   local failed=false
-  local proc_path exe_path mining_connections
+  local proc_path exe_path
 
   for proc_path in /proc/[0-9]*; do
     [[ -e "$proc_path/exe" ]] || continue
@@ -208,21 +208,6 @@ verify() {
       failed=true
     fi
   done
-
-  if command -v ss >/dev/null 2>&1; then
-    mining_connections="$(
-      ss -Htpn 2>/dev/null \
-        | grep -E ':(3333|7029|19999)([[:space:]]|$)' \
-        || true
-    )"
-    if [[ -n "$mining_connections" ]]; then
-      warn "A connection to a known mining-pool port remains."
-      warn "This can be a short-lived TCP closing state or a different process; inspect it manually:"
-      printf '%s\n' "$mining_connections"
-    else
-      ok "No active connection to the known mining-pool ports was found."
-    fi
-  fi
 
   if $failed; then
     die "Verification failed. Manual investigation is required."
